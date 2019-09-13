@@ -15,18 +15,18 @@
 //
 
 (function() {
-    'use strict';
+  "use strict";
 
-    const navigationExpanded = () => $('nav > div').clientWidth > 100
+  const navigationExpanded = () => $("nav > div").clientWidth > 100;
 
-    let active = true;
+  let active = true;
 
-    document.arrive('[data-testid="NavBarCollapseIconBottom"]', button => {
-      if (!active) return ();
+  document.arrive('[data-testid="NavBarCollapseIconBottom"]', button => {
+    if (!active) return;
 
-      if (navigationExpanded) {
-        active = false;
-        button.click();
-      }
-    });
+    if (navigationExpanded) {
+      active = false;
+      button.click();
+    }
+  });
 })();
