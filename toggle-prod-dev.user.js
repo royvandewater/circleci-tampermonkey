@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Toggle Prod/Dev
 // @namespace    http://royvandewater.com/
-// @version      1.1
+// @version      2.0
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/toggle-prod-dev.user.js
 // @description  Toggle between production & development environments
 // @author       You
 // @match        https://app.circleci.com/*
-// @match        http://app.circlehost:3000/*
+// @match        https://circleci.jp/*
 // @grant        none
 // @require      https://unpkg.com/hotkeys-js/dist/hotkeys.min.js
 // ==/UserScript==
@@ -20,6 +20,6 @@
             return
         }
 
-        window.location = "http://app.circlehost:3000" + window.location.pathname
+        window.location = "https://circleci.jp" + window.location.pathname
     })
 })();
