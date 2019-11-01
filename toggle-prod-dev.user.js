@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Toggle Prod/Dev
 // @namespace    http://royvandewater.com/
-// @version      2.0
+// @version      2.1
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/toggle-prod-dev.user.js
 // @description  Toggle between production & development environments
 // @author       You
@@ -15,7 +15,7 @@
     'use strict';
 
     window.hotkeys('command+k', () => {
-        if (window.location.host.startsWith("app.circlehost")) {
+        if (window.location.host.startsWith("circleci.jp")) {
             window.location = "https://app.circleci.com" + window.location.pathname
             return
         }
