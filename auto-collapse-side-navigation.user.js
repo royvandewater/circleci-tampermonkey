@@ -2,7 +2,7 @@
 // @name         Auto Collapse Primary Navigation
 // @namespace    http://royvandewater.com/
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/auto-collapse-side-navigation.user.js
-// @version      1.2
+// @version      1.3
 // @description  Automatically close the primary navigation on initial page load
 // @author       Roy van de Water
 // @match        https://app.circleci.com/*
@@ -18,7 +18,7 @@
 (function() {
   "use strict";
 
-  const navigationExpanded = () => $("nav").clientWidth > 100;
+  const navigationExpanded = () => document.querySelector("nav").clientWidth > 100;
 
   let active = true;
 
