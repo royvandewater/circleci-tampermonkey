@@ -21,8 +21,6 @@
   const navigationExpanded = () => document.querySelector("nav").clientWidth > 100;
 
   document.arrive('[aria-label="Toggle Primary Navigation Panel"]', button => {
-    if (!active) return;
-
     if (navigationExpanded()) {
       button.click();
     }
