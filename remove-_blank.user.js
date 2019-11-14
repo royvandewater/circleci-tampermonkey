@@ -7,7 +7,7 @@
 // @author       Roy van de Water
 // @match        https://app.circleci.com/*
 // @match        http://localhost:3000/*
-// @match        https://app.circleci.jp/*
+// @match        https://circleci.jp/*
 // @match        http://app.circlehost:3000/*
 // @require      https://cdnjs.cloudflare.com/ajax/libs/arrive/2.4.1/arrive.min.js
 // @grant        none
