@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Toggle New/Legacy web-ui
 // @namespace    http://royvandewater.com/
-// @version      1.3
+// @version      1.4
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/toggle-new-legacy-web-ui.user.js
 // @description  Toggle between the New & Legacy web-ui using CMD+J
 // @author       Roy van de Water
@@ -32,7 +32,7 @@ const toOldJobPath = newPath => {
 };
 
 const toOldWorkflowsPath = newPath => {
-  const [newVcs, org, repo] = newPath.split("/");
+  const [_, newVcs, org, repo] = newPath.split("/");
   const vcs = newToOldVcs[newVcs];
   return `/${vcs}/${org}/workflows/${repo}`;
 };
