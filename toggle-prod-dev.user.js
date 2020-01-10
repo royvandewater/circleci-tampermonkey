@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Toggle Prod/Dev
 // @namespace    http://royvandewater.com/
-// @version      3.2
+// @version      3.3
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/toggle-prod-dev.user.js
 // @description  Toggle between production & development environments
 // @author       You
@@ -27,7 +27,7 @@
       return;
     }
 
-    if (pathname.startsWith("/settings/organization")) {
+    if (pathname.startsWith("/settings")) {
       window.location = "https://ui.circleci.com" + pathname + search;
       return;
     }
