@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         L goes to latest workflow
 // @namespace    http://royvandewater.com/
-// @version      1.0
+// @version      1.1
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/l-goes-to-latest-workflow.user.js
 // @description  Will navigate to the the latest workflow page of the current branch when looking at the workflow page
 // @author       Roy van de Water
@@ -23,13 +23,13 @@
   const branchASelector =
     "#__next > div > div > div > div > div > div > div > a";
   const workflowASelector =
-    "#__next > div > main > div > div > div > div:nth-child(4) > a";
+    "#__next > div > main > div > div > div:nth-child(2) > div:nth-child(4) > a";
 
   const getBranchA = () => {
     return $(branchASelector)[0];
   };
 
-  window.hotkeys("w", () => {
+  window.hotkeys("l", () => {
     if (!window.location.pathname.includes("/workflows/")) return;
 
     const a = getBranchA();
