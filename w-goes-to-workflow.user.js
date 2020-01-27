@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         W goes to workflow
 // @namespace    http://royvandewater.com/
-// @version      1.3
+// @version      1.4
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/w-goes-to-workflow.user.js
 // @description  Will navigate to the workflow page when looking at the job page
 // @author       Roy van de Water
@@ -26,7 +26,7 @@
     if (a) return a.click();
 
     const click = el => {
-      $(document).unbindArrive(click);
+      window.unbindArrive(click);
       el.click();
     };
 
