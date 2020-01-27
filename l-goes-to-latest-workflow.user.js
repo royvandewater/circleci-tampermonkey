@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         L goes to latest workflow
 // @namespace    http://royvandewater.com/
-// @version      1.4
+// @version      1.5
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/l-goes-to-latest-workflow.user.js
 // @description  Will navigate to the the latest workflow page of the current branch when looking at the workflow page
 // @author       Roy van de Water
@@ -55,5 +55,6 @@
 
     document.arrive(workflowASelector, click);
     document.body.prepend(waitingMessage);
+    document.addEventListener('click', () => waitingMessage.remove());
   });
 })();
