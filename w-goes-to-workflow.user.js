@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         W goes to workflow
 // @namespace    http://royvandewater.com/
-// @version      1.4
+// @version      2.0
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/w-goes-to-workflow.user.js
 // @description  Will navigate to the workflow page when looking at the job page
 // @author       Roy van de Water
@@ -14,10 +14,10 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/arrive/2.4.1/arrive.min.js
 // ==/UserScript==
 
-(function() {
+(function () {
   "use strict";
 
-  const workflowSelector = 'ol > li:nth-of-type(2) > a';
+  const workflowSelector = 'ol > li:nth-of-type(3) > a';
 
   window.hotkeys("w", () => {
     if (!window.location.pathname.startsWith("/jobs")) return;
