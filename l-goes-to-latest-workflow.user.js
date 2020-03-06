@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         L goes to latest workflow
 // @namespace    http://royvandewater.com/
-// @version      1.5
+// @version      1.6
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/l-goes-to-latest-workflow.user.js
 // @description  Will navigate to the the latest workflow page of the current branch when looking at the workflow page
 // @author       Roy van de Water
@@ -14,7 +14,7 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/arrive/2.4.1/arrive.min.js
 // ==/UserScript==
 
-(function() {
+(function () {
   "use strict";
 
   const branchASelector =
@@ -37,10 +37,18 @@
     return waitingMessage;
   }
 
+  const getWorkflowId = () => {
+    const parts = window.location.pathname.split('/')
+    const index = parts.indexOf('workflows')
+    return parts[index + 1]
+  }
+
   window.hotkeys("l", async () => {
     if (!window.location.pathname.includes("/workflows/")) return;
 
-    const workflowId = window.location.pathname.split("/").pop();
+    const workflowId = getWorkflowId();
+
+    if (!workflowId) return;
 
     const waitingMessage = buildWaitingMessage();
     const a = await getBranchA();
