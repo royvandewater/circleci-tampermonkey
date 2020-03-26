@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Toggle New/Legacy web-ui
 // @namespace    http://royvandewater.com/
-// @version      2.1
+// @version      2.2
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/toggle-new-legacy-web-ui.user.js
 // @description  Toggle between the New & Legacy web-ui using CMD+J
 // @author       Roy van de Water
@@ -39,7 +39,7 @@
   }, {
     name: 'Workflows',
     match: new RegExp('^/workflow-run/([\\w-]+)'),
-    convert: ([_, workflowId]) => `/workflows/${workflowId}`,
+    convert: ([_, workflowId]) => `/pipelines/workflows/${workflowId}`,
   }, {
     name: 'Pipelines',
     match: new RegExp('^/([\\w-]+)/([\\w-]+)/workflows/([\\w-]+)$'),
