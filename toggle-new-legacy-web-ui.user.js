@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Toggle New/Legacy web-ui
 // @namespace    http://royvandewater.com/
-// @version      2.2
+// @version      2.3
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/toggle-new-legacy-web-ui.user.js
 // @description  Toggle between the New & Legacy web-ui using CMD+J
 // @author       Roy van de Water
@@ -74,20 +74,43 @@
     return new URL(oldPathname, "https://circleci.com").toString();
   }
 
+  const isOldUI = () => (
+    window.location.host.startsWith("circleci.com")
+  )
+
   const getLocation = () => {
-    if (window.location.host.startsWith("circleci.com")) {
+    if (isOldUI()) {
       return getNewLocation();
     }
 
     return getOldLocation();
   }
 
-  window.hotkeys("command+j", () => {
+  const getCSRF = async () => {
+    const res = await fetch('https://circleci.com/api/v2/csrf', {credentials: 'include'});
+    const body = await res.json();
+    return body.csrf_token;
+  }
+
+  const updateUser = async (optOut) => {
+    const csrf = await getCSRF();
+    const search = new URLSearchParams({CSRFToken: csrf}).toString()
+    const body = JSON.stringify({web_ui_pipelines_optout: optOut})
+    await fetch(`https://circleci.com/api/v1/user/save-preferences?${search}`, {
+      headers: {'Content-Type': 'application/json'},
+      method: 'PUT',
+      credentials: 'include',
+      body,
+    })
+  }
+
+  window.hotkeys("command+j", async () => {
     const otherLocation = getLocation();
     if (!otherLocation) {
       console.warn("Could not find matching other location.")
       return;
     }
+    await updateUser(isOldUI() ? 'opted-in' : 'opted-out');
     window.location = getLocation();
   });
 })();
