@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Print the optimizely revision
 // @namespace    http://royvandewater.com/
-// @version      1.0
+// @version      2.0
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/print-optimizely-revision.user.js
 // @description  Print the optimizely revision in the datafile
 // @author       Roy van de Water
@@ -14,5 +14,5 @@
 
   const str = document.querySelector('pre').innerText
   const { revision } = JSON.parse(str)
-  return { revision }
+  console.log({ revision })
 })();
