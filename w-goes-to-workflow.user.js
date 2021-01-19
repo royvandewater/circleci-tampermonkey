@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         W goes to workflow
 // @namespace    http://royvandewater.com/
-// @version      2.1
+// @version      2.2
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/w-goes-to-workflow.user.js
 // @description  Will navigate to the workflow page when looking at the job page
 // @author       Roy van de Water
 // @match        https://app.circleci.com/*
+// @match        https://ui.circleci.com/*
 // @match        https://circleci.jp/*
 // @match        http://localhost:3000/*
 // @match        http://app.circlehost:3000/*
@@ -17,7 +18,7 @@
 (function () {
   "use strict";
 
-  const workflowSelector = 'ol > li:nth-of-type(3) > a';
+  const workflowSelector = 'ol > li:nth-child(4) > div > a';
 
   window.hotkeys("w", () => {
     const a = document.querySelector(workflowSelector);
