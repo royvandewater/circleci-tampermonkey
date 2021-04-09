@@ -1,13 +1,16 @@
 // ==UserScript==
 // @name         Wait for Optimizely Updates
 // @namespace    http://royvandewater.com/
-// @version      1.1
+// @version      1.2
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/wait-for-optimizely-updates.user.js
 // @description  Will let you know when a new version of Optimizely goes out when looking at the datafile
 // @author       Roy van de Water
 // @match        https://app.circleci.com/api/datafiles/*
+// @connect      self
 // @grant        none
 // ==/UserScript==
+
+const { Promise } = require("q");
 
 (function () {
   "use strict";
@@ -18,9 +21,15 @@
   }
 
   const fetchLatestVersion = async () => {
-    const res = await fetch(location.toString())
-    const body = await res.json()
-    return body.revision
+    return new Promise((reject, resolve) => {
+      GM_xmlhttpRequest({
+        method: 'GET',
+        url: location.toString(),
+        responseType: 'json',
+        onload: (res) => resolve(res.response.revision),
+        onerror: (error) => reject(error),
+      })
+    });
   }
 
   const buildNewRevisionMessage = (oldRevision, newRevision) => {
@@ -66,6 +75,6 @@
     }
 
     previousVersion = latestVersion
-    setTimeout(newRevisionCheck, 1000)
+    setTimeout(newRevisionCheck, 5000)
   }
 })();
