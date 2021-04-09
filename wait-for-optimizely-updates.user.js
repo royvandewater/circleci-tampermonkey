@@ -1,22 +1,17 @@
 // ==UserScript==
 // @name         Wait for Optimizely Updates
 // @namespace    http://royvandewater.com/
-// @version      1.10
+// @version      1.11
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/wait-for-optimizely-updates.user.js
 // @description  Will let you know when a new version of Optimizely goes out when looking at the datafile
 // @author       Roy van de Water
 // @match        https://app.circleci.com/api/datafiles/*
 // @grant        GM_xmlhttpRequest
-// @connect      self
+// @connect      app.circleci.com
 // ==/UserScript==
 
-(function () {
+(async () => {
   "use strict";
-
-  const getCurrentVersion = () => {
-    const str = document.querySelector('pre').innerText
-    return JSON.parse(str).revision
-  }
 
   const fetchLatestVersion = async () => {
     return new Promise((resolve, reject) => {
@@ -60,7 +55,7 @@
     if (message) message.remove();
   }
 
-  let previousVersion = getCurrentVersion();
+  let previousVersion = await getCurrentVersion();
   const newRevisionCheck = async () => {
     const latestVersion = await fetchLatestVersion();
 
