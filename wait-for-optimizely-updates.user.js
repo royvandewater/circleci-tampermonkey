@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Wait for Optimizely Updates
 // @namespace    http://royvandewater.com/
-// @version      1.7
+// @version      1.8
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/wait-for-optimizely-updates.user.js
 // @description  Will let you know when a new version of Optimizely goes out when looking at the datafile
 // @author       Roy van de Water
@@ -9,8 +9,6 @@
 // @grant        GM_xmlhttpRequest
 // @connect      self
 // ==/UserScript==
-
-const console = require("console");
 
 (function () {
   "use strict";
