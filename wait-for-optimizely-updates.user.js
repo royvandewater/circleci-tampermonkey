@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Wait for Optimizely Updates
 // @namespace    http://royvandewater.com/
-// @version      1.2
+// @version      1.3
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/wait-for-optimizely-updates.user.js
 // @description  Will let you know when a new version of Optimizely goes out when looking at the datafile
 // @author       Roy van de Water
@@ -77,4 +77,5 @@ const { Promise } = require("q");
     previousVersion = latestVersion
     setTimeout(newRevisionCheck, 5000)
   }
+  newRevisionCheck();
 })();
