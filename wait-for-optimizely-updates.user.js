@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Wait for Optimizely Updates
 // @namespace    http://royvandewater.com/
-// @version      1.8
+// @version      1.9
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/wait-for-optimizely-updates.user.js
 // @description  Will let you know when a new version of Optimizely goes out when looking at the datafile
 // @author       Roy van de Water
@@ -24,6 +24,7 @@
         method: 'GET',
         url: location.toString(),
         responseType: 'json',
+        nocache: true,
         onload: (res) => resolve(res.response.revision),
         onerror: (error) => reject(error),
       })
