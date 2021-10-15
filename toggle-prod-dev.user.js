@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Toggle Prod/Dev
 // @namespace    http://royvandewater.com/
-// @version      5.0
+// @version      5.1
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/toggle-prod-dev.user.js
 // @description  Toggle between production & development environments
 // @author       You
@@ -15,10 +15,10 @@
 (function() {
   "use strict";
 
-  const { host, pathname, search } = window.location;
-  const getNewHost = () => host.startsWith("app.circleci.com") ? 'https://ui.circleci.com' : 'https://app.circleci.com';
+  const getNewHost = (host) => host.startsWith("app.circleci.com") ? 'https://ui.circleci.com' : 'https://app.circleci.com';
 
   window.hotkeys("command+k", () => {
-    window.location = getNewHost() + pathname + search;
+    const { host, pathname, search } = window.location;
+    window.location = getNewHost(host) + pathname + search;
   });
 })();
