@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         p goes to pipelines
 // @namespace    http://royvandewater.com/
-// @version      1.0
+// @version      2.0
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/w-goes-to-workflow.user.js
 // @description  Will navigate to the pipelines page when looking at the workflow or job page
 // @author       Roy van de Water
@@ -17,7 +17,7 @@
 (function () {
   "use strict";
 
-  const pipelinesSelector = 'a[title="Pipelines"]';
+  const pipelinesSelector = 'a[title="Dashboard"]';
 
   window.hotkeys("p", () => {
     const a = document.querySelector(pipelinesSelector);
