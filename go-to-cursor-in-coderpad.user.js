@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         go-to-cursor-in-coderpad
 // @namespace    http://royvandewater.com/
-// @version      1.0
+// @version      1.1
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/go-to-cursor-in-coderpad.user.js
 // @description  Will scroll to bring someone's cursor in view when you click their name
 // @author       Roy van de Water
@@ -32,7 +32,6 @@
       return;
     }
 
-    cursor.scrollIntoView()
     const $pre = $($(cursor).closest('pre'))
     const $row = $($pre.parent())
 
