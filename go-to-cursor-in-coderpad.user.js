@@ -5,11 +5,7 @@
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/go-to-cursor-in-coderpad.user.js
 // @description  Will scroll to bring someone's cursor in view when you click their name
 // @author       Roy van de Water
-// @match        https://app.circleci.com/*
-// @match        https://ui.circleci.com/*
-// @match        https://circleci.jp/*
-// @match        http://localhost:3000/*
-// @match        http://app.circlehost:3000/*
+// @match        https://app.coderpad.io/*
 // @grant        none
 // ==/UserScript==
 
