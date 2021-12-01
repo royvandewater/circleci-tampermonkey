@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         B goes to branch
 // @namespace    http://royvandewater.com/
-// @version      1.1
+// @version      1.2
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/b-goes-to-branch.user.js
 // @description  Will navigate to the pipelines page for the current project & branch
 // @author       Roy van de Water
@@ -10,6 +10,7 @@
 // @match        https://circleci.jp/*
 // @match        http://localhost:3000/*
 // @match        http://app.circlehost:3000/*
+// @match        https://app.k9s.sphereci.com/*
 // @grant        none
 // @require      https://unpkg.com/hotkeys-js/dist/hotkeys.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/arrive/2.4.1/arrive.min.js
