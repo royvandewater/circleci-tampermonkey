@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         Format Optimizely datafile
 // @namespace    http://royvandewater.com/
-// @version      1.2
+// @version      1.3
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/format-optimizely-datafile.user.js
 // @description  Pretty prints the datafile
 // @author       Roy van de Water
 // @match        https://app.circleci.com/api/datafiles/*
 // @match        https://app.circleci.com/private/experiments/datafiles/*
 // @match        https://assets-growth-common.circleci.com/optimizely/datafiles/*
+// @match        https://cdn.optimizely.com/datafiles/*
 // @grant        none
 // ==/UserScript==
 
