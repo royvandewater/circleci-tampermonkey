@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         L goes to latest workflow
 // @namespace    http://royvandewater.com/
-// @version      2.5
+// @version      2.6
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/l-goes-to-latest-workflow.user.js
 // @description  Will navigate to the the latest workflow page of the current branch when looking at the workflow page
 // @author       Roy van de Water
@@ -23,6 +23,10 @@
     'ol > li:nth-child(3) > div > a';
   const workflowASelector =
     'main > div > div > div:nth-child(3) a[data-cy="workflow-status-link"]'
+  const workflowBreadCrumbASelector =
+    'ol > li:nth-child(4) > div > a'
+  const workflowBreadCrumbSpanSelector =
+    'ol > li:nth-child(4) > div > span'
 
   const getBranchA = () =>
     new Promise(resolve => {
@@ -61,10 +65,16 @@
     return parts[index + 1]
   }
 
+  const getWorkflowName = () => {
+    const workflowElement = document.querySelector(workflowBreadCrumbASelector) ?? document.querySelector(workflowBreadCrumbSpanSelector);
+    return workflowA.text
+  }
+
   window.hotkeys("l", async () => {
     if (!window.location.pathname.includes("/workflows/")) return;
 
     const workflowId = getWorkflowId();
+    const workflowName = getWorkflowName();
 
     if (!workflowId) return;
 
@@ -74,6 +84,7 @@
 
     const click = el => {
       if (!el) return;
+      if (el.text !== workflowName) return;
       if (el.href.includes(workflowId)) return;
       waitingMessage.remove()
       document.unbindArrive(click);
