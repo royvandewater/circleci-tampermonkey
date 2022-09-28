@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         L goes to latest workflow
 // @namespace    http://royvandewater.com/
-// @version      2.6
+// @version      2.7.0
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/l-goes-to-latest-workflow.user.js
+// @downloadURL  https://github.com/royvandewater/circleci-tampermonkey/raw/master/l-goes-to-latest-workflow.user.js
 // @description  Will navigate to the the latest workflow page of the current branch when looking at the workflow page
 // @author       Roy van de Water
 // @match        https://app.circleci.com/*
