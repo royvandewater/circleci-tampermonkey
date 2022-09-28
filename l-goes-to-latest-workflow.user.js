@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         L goes to latest workflow
 // @namespace    http://royvandewater.com/
-// @version      2.7.1
+// @version      2.7.2
 // @updateURL    https://github.com/royvandewater/circleci-tampermonkey/raw/master/l-goes-to-latest-workflow.user.js
 // @downloadURL  https://github.com/royvandewater/circleci-tampermonkey/raw/master/l-goes-to-latest-workflow.user.js
 // @description  Will navigate to the the latest workflow page of the current branch when looking at the workflow page
@@ -23,7 +23,7 @@
   const branchASelector =
     'ol > li:nth-child(3) > div > a';
   const workflowASelector =
-    'main > div > div > div:nth-child(3) a[data-cy="workflow-status-link"]'
+    'main > div > div > div:nth-child(3) a'
   const workflowBreadCrumbASelector =
     'ol > li:nth-child(4) > div > a'
   const workflowBreadCrumbSpanSelector =
@@ -68,7 +68,7 @@
 
   const getWorkflowName = () => {
     const el = document.querySelector(workflowBreadCrumbASelector) ?? document.querySelector(workflowBreadCrumbSpanSelector);
-    return el.text
+    return el.textContent
   }
 
   window.hotkeys("l", async () => {
@@ -83,19 +83,22 @@
     const a = await getBranchA();
     a.click();
 
-    const click = el => {
+    const tryClick = el => {
       if (!el) return;
       if (el.text !== workflowName) return;
       if (el.href.includes(workflowId)) return;
       waitingMessage.remove()
-      document.unbindArrive(click);
+      document.unbindArrive(tryClick);
       el.click();
     };
 
-    click(document.querySelector(workflowASelector))
-    document.arrive(workflowASelector, click);
+    document.querySelectorAll(workflowASelector).forEach(tryClick);
+    document.arrive(workflowASelector, tryClick);
     document.body.prepend(waitingMessage);
-    document.addEventListener('click', () => waitingMessage.remove());
+    document.addEventListener('click', () => {
+      waitingMessage.remove();
+      document.unbindArrive(tryClick);
+    });
 
     requestAnimationFrame(() => { waitingMessage.style.top = 0 });
   });
